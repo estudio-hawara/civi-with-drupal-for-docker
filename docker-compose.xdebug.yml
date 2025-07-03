@@ -1,0 +1,12 @@
+services:
+  drupal:
+    build:
+      args:
+        - INSTALL_XDEBUG=${INSTALL_XDEBUG}
+        - PHP_VERSION=${PHP_VERSION}
+        - CIVICRM_VERSION=${CIVICRM_VERSION}
+        - WEBFORM_VERSION=${WEBFORM_VERSION}
+        - WEBFORM_CIVICRM_VERSION=${WEBFORM_CIVICRM_VERSION}
+        - WEBFORM_VALIDATION_VERSION=${WEBFORM_VALIDATION_VERSION}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

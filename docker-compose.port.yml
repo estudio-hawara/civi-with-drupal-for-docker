@@ -1,0 +1,4 @@
+services:
+  drupal:
+    ports:
+      - ${WEB_HOST_PORT}:80

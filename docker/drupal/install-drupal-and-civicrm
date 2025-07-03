@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -e
+
+echo "Installing Drupal"
+
+drush site:install standard \
+    --account-name=${DRUPAL_USER} \
+    --account-pass=${DRUPAL_PASSWORD} \
+    --db-url="mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}" -y
+
+echo "Installing CiviCRM"
+
+chmod +w /opt/drupal/web/sites/default
+
+cv core:install \
+    --url="http://${DRUPAL_HOST}" \
+    --db="mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}"
+
+composer civicrm:publish
+
+chmod -w /opt/drupal/web/sites/default
+chown -R www-data: /opt/drupal/web/sites/default/files/civicrm/
+
+echo "Installing the Webform CiviCRM module"
+
+drush en webform webform_civicrm webform_validation

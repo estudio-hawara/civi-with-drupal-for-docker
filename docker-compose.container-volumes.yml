@@ -1,0 +1,17 @@
+services:
+  drupal:
+    volumes:
+      - drupal_sites:/opt/drupal/web/sites
+      - drupal_profiles:/opt/drupal/web/profiles
+      - drupal_modules:/opt/drupal/web/modules
+      - drupal_themes:/opt/drupal/web/themes
+      - drupal_site_modules:/opt/drupal/web/sites/default/modules
+      - civicrm_extensions:/opt/drupal/web/sites/default/files/civicrm/ext
+
+volumes:
+  drupal_sites:
+  drupal_profiles:
+  drupal_modules:
+  drupal_themes:
+  drupal_site_modules:
+  civicrm_extensions:
