@@ -5,6 +5,6 @@ echo "Creating the test database"
 
 TEST_DSN="mysql://$TEST_DB_USER:$TEST_DB_PASSWORD@$TEST_DB_HOST/$TEST_DB_NAME?new_link=true"
 
-pushd /var/www/html/sites/default
+pushd /opt/drupal/web/sites/default
     cv core:install --db=$TEST_DSN --url=http://$DRUPAL_HOST -K
 popd
