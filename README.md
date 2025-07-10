@@ -17,6 +17,17 @@ Once you have cloned the repository, create a new `.env` file and set your safe 
 cp env.example .env
 ```
 
+Make sure this variables are properly set:
+
+```bash
+# MySQL
+DB_HOST=mysql
+DB_PORT=3306
+DB_NAME=drupal_database
+DB_USER=drupal_user
+DB_PASSWORD=database_password
+```
+
 ## Docker Container
 
 The first time that you start the container, do that with `--build` so that the image is created. This will load the container with the minimum settings. It may not be what you need, so keep reading.
@@ -171,3 +182,31 @@ If you are working with local volumes and you added a new module to your `volume
 ```
 
 The same holds for themes.
+
+
+## Unit Tests
+
+If you are going to use the container for development, you may want to enable unit tests. To enable support for PHPUnit, first set up the credentials of your test database:
+
+```bash
+# MySQL / PHPUnit
+TEST_DB_HOST=mysql
+TEST_DB_PORT=3306
+TEST_DB_NAME=test_database
+TEST_DB_USER=test_user
+TEST_DB_PASSWORD=test_password
+```
+
+Then install **phpunit**:
+
+```bash
+./dc exec -u root drupal \
+    install-phpunit
+```
+
+... and initialize the test database:
+
+```bash
+./dc exec drupal \
+    initialize-test-db
+```

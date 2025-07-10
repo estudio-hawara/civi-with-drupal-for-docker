@@ -45,6 +45,12 @@ RUN mkdir -p /opt/drupal/web/sites/default/files/civicrm/ext \
 COPY install-drupal-and-civicrm /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-drupal-and-civicrm
 
+COPY install-phpunit /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-phpunit
+
+COPY initialize-test-db /usr/local/bin/
+RUN chmod +x /usr/local/bin/initialize-test-db
+
 COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 USER www-data
