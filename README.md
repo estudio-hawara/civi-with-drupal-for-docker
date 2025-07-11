@@ -164,6 +164,8 @@ Your Drupal service should now be ready for use, but you'll still need to follow
     install-drupal-and-civicrm
 ```
 
+> Note the `-u root` that is necesary as this command installs software and needs privileges to do so.
+
 ### Install CiviCRM Extensions
 
 If you are working with local volumes and you added a new extension to your `volume/civicrm-extensions` folder, you can enable with:
@@ -208,9 +210,20 @@ Then install **phpunit**:
     install-phpunit
 ```
 
+> Note the `-u root` that is necesary as this command installs software and needs privileges to do so.
+
 ... and initialize the test database:
 
 ```bash
 ./dc exec drupal \
     initialize-test-db
+```
+
+Now you can run the tests from each of the extensions that you have installed in your system by running:
+
+```bash
+# Let's say you want to test "civirules"
+
+./dc exec -w /opt/drupal/web/sites/default/files/civicrm/ext/civirules drupal \
+    phpunit
 ```
