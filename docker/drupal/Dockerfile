@@ -51,6 +51,8 @@ RUN chmod +x /usr/local/bin/install-phpunit
 COPY initialize-test-db /usr/local/bin/
 RUN chmod +x /usr/local/bin/initialize-test-db
 
+COPY cv-configure.php /var/www
+
 COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 USER www-data

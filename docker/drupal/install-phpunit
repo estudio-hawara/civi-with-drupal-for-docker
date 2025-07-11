@@ -7,10 +7,7 @@ composer require --dev phpunit/phpunit ^9
 
 echo "Configuring the test database"
 
-TEST_DSN="mysql://$TEST_DB_USER:$TEST_DB_PASSWORD@$TEST_DB_HOST/$TEST_DB_NAME?new_link=true"
-CV_JSON="/var/www/.cv.json"
-
-pushd /var/www/html/sites/default
-    echo "{\"TEST_DB_DSN\": \"$TEST_DSN\"}" > $CV_JSON
-    chown www-data $CV_JSON
+pushd /var/www
+    php cv-configure.php > .cv.json
+    chown www-data .cv.json
 popd
