@@ -1,14 +1,11 @@
 services:
   drupal:
     volumes:
-      - drupal_sites:/opt/drupal/web/sites
-      - drupal_profiles:/opt/drupal/web/profiles
-      - drupal_modules:/opt/drupal/web/modules
+      - drupal_root:/opt/drupal
+      - ./volumes/civicrm-core:/mnt/civicrm-core
       - ./volumes/drupal-modules/site:/opt/drupal/web/sites/default/modules
       - ./volumes/drupal-themes:/opt/drupal/web/sites/default/themes
       - ./volumes/civicrm-extensions:/opt/drupal/web/sites/default/files/civicrm/ext
 
 volumes:
-  drupal_profiles:
-  drupal_sites:
-  drupal_modules:
+  drupal_root:
