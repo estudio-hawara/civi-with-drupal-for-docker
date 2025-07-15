@@ -37,10 +37,17 @@ RUN composer require -w drupal/webform:$WEBFORM_CIVICRM_VERSION \
     drupal/webform_civicrm:$WEBFORM_VERSION \
     drupal/webform_validation:$WEBFORM_VALIDATION_VERSION
 
+# Settings
+
+COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "memory_limit = 1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
+
+# Folders
 
 RUN mkdir -p /opt/drupal/web/sites/default/files/civicrm/ext \
     && chown -R www-data: /opt/drupal/web/sites/default/files
+
+# Utility scripts
 
 COPY install-drupal-and-civicrm /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-drupal-and-civicrm
@@ -51,8 +58,9 @@ RUN chmod +x /usr/local/bin/install-phpunit
 COPY initialize-test-db /usr/local/bin/
 RUN chmod +x /usr/local/bin/initialize-test-db
 
-COPY cv-configure.php /var/www
+COPY sync-core-volumes /usr/local/bin/
+RUN chmod +x /usr/local/bin/sync-core-volumes
 
-COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+COPY cv-configure.php /var/www
 
 USER www-data

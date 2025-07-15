@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+
+if [ -d /mnt/civicrm-core ]; then
+    echo "Populating the local core volume"
+
+    rm -rf /mnt/civicrm-core/*
+    cp -R /opt/drupal/vendor/civicrm/civicrm-core/* /mnt/civicrm-core
+fi
