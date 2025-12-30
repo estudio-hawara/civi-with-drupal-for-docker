@@ -11,8 +11,9 @@
             "port": 9003,
             "stopOnEntry": false,
             "pathMappings": {
+                "/mnt/civicrm-core": "${workspaceFolder}/volumes/civicrm-core",
                 "/opt/drupal/web/sites/default/files/civicrm/ext": "${workspaceFolder}/volumes/civicrm-extensions",
-                "/opt/drupal/web/sites/default/modules": "${workspaceFolder}/volumes/drupal-modules",
+                "/opt/drupal/web/sites/default/modules": "${workspaceFolder}/volumes/drupal-modules/site",
                 "/opt/drupal/web/sites/default/themes": "${workspaceFolder}/volumes/drupal-themes"
             },
             "ignore": [

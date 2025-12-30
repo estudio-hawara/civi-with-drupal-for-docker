@@ -8,5 +8,9 @@ services:
         - WEBFORM_VERSION=${WEBFORM_VERSION}
         - WEBFORM_CIVICRM_VERSION=${WEBFORM_CIVICRM_VERSION}
         - WEBFORM_VALIDATION_VERSION=${WEBFORM_VALIDATION_VERSION}
+    environment:
+      - XDEBUG_MODE=${XDEBUG_MODE}
+      - XDEBUG_CONFIG=${XDEBUG_CONFIG}
+      - XDEBUG_SESSION=${XDEBUG_SESSION_START}
     extra_hosts:
       - "host.docker.internal:host-gateway"

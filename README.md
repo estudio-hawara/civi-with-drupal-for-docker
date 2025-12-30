@@ -107,7 +107,7 @@ Then you'll have access to this folders that contain CiviCRM extensions and Drup
 To enable XDebug, set the `INSTALL_XDEBUG` environment variable to `1` when building the image. It's important to do this at build time because otherwise your container won't even have XDebug installed.
 
 ```bash
-INSTALL_XDEBUG=1 docker compose up -d --build
+docker compose build --build-arg INSTALL_XDEBUG=1
 ```
 
 ### The `dc` Helper

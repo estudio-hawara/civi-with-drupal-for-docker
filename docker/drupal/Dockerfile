@@ -39,7 +39,12 @@ RUN composer require -w drupal/webform:$WEBFORM_CIVICRM_VERSION \
 
 # Settings
 
-COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+COPY xdebug.ini /tmp/xdebug.ini
+RUN if [ "$INSTALL_XDEBUG" = "1" ]; then \
+        mv /tmp/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+    else \
+        rm /tmp/xdebug.ini; \
+    fi
 RUN echo "memory_limit = 1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
 
 # Folders
