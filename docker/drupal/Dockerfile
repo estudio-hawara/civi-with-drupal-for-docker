@@ -4,6 +4,7 @@ FROM drupal:10-php${PHP_VERSION}-apache
 
 ARG INSTALL_XDEBUG=0
 ARG CIVICRM_VERSION=5.81
+ARG BRICKMONEY_VERSION=0.11.2
 ARG WEBFORM_VERSION=6.3
 ARG WEBFORM_CIVICRM_VERSION=6.2
 ARG WEBFORM_VALIDATION_VERSION=2.0
@@ -22,12 +23,14 @@ RUN composer config extra.enable-patching true \
     && composer config --no-plugins allow-plugins.civicrm/composer-downloads-plugin true \
     && composer config --no-plugins allow-plugins.civicrm/composer-compile-plugin true \
     && composer config --no-plugins allow-plugins.civicrm/civicrm-asset-plugin true \
-    && composer config extra.compile-mode all
+    && composer config extra.compile-mode all \
+    && composer config --json audit.ignore '{"PKSA-y2cr-5h3j-g3ys": "firebase/php-jwt required by CiviCRM", "PKSA-2kqm-ps5x-s4f5": "firebase/php-jwt required by CiviCRM"}'
 
 RUN composer require \
     civicrm/civicrm-core:$CIVICRM_VERSION \
     civicrm/civicrm-packages:$CIVICRM_VERSION \
-    civicrm/civicrm-drupal-8:$CIVICRM_VERSION
+    civicrm/civicrm-drupal-8:$CIVICRM_VERSION \
+    brick/money:$BRICKMONEY_VERSION
 
 RUN composer require --dev \
     drush/drush \
