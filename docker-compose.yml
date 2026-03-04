@@ -8,7 +8,6 @@ services:
         - WEBFORM_VERSION=${WEBFORM_VERSION}
         - WEBFORM_CIVICRM_VERSION=${WEBFORM_CIVICRM_VERSION}
         - WEBFORM_VALIDATION_VERSION=${WEBFORM_VALIDATION_VERSION}
-    restart: always
     networks:
       - mariadb
     environment:
