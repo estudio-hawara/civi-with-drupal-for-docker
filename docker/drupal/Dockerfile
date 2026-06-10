@@ -12,7 +12,7 @@ ARG WEBFORM_VALIDATION_VERSION=2.0
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN apt-get update \
-    && apt-get install -y libicu-dev unzip git \
+    && apt-get install -y libicu-dev unzip git default-mysql-client \
     && install-php-extensions gd intl mbstring mysqli pdo pdo_mysql \
     && if [ "$INSTALL_XDEBUG" = "1" ]; then install-php-extensions xdebug; fi \
     && apt-get clean \
